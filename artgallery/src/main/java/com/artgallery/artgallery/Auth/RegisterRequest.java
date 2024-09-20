@@ -10,11 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
-
     String username;
     String password;
-    String firtsname;
+    String firstname; // Cambia 'firtsname' a 'firstname'
     String lastname;
     String country;
-
 }

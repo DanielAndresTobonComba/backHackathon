@@ -27,10 +27,11 @@ public class AuthController {
         return ResponseEntity.ok(authservice.login(resquest));
     }
 
-
+    // http://localhost:8090/auth/registro
     // la rta se un authResponse y recibiremos los datos de usario de tipo RegisterRequest.
     @PostMapping("/registro")
     public  ResponseEntity<AuthResponse> registro (@RequestBody RegisterRequest resquest) {
-        return ResponseEntity.ok(authservice.registro());
+        System.out.println("Registro llamado con: " + resquest);
+        return ResponseEntity.ok(authservice.registro(resquest));
     }
 }
