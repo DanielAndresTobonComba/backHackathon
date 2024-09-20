@@ -27,3 +27,31 @@ El proyecto proporciona las siguientes funcionalidades:
 4. En futuras solicitudes, el cliente envía el token JWT en el encabezado de la solicitud.
 5. El servidor verifica el token JWT y, si es válido, permite al cliente acceder a las rutas protegidas.
 
+## Funcionalidad de Endpoints 
+
+## Registrar Usuario: 
+* URL Controller: http://localhost:8090/auth/registro
+* Json Body: {
+  "username": "exampleUser",
+  "password": "examplePassword",
+  "firstname": "John", 
+  "lastname": "Doe",
+  "country": "USA"
+}
+
+## Ingresar Usuario: 
+* URL Controller: http://localhost:8090/auth/login
+* Json Body : {
+	"username":"exampleUser",
+	"password": "examplePassword"
+}
+
+
+## Recuerde enviar en auth el token que le retorna el ingreso de usuario
+## Crear pais (ramaProtegida) 
+* URL Controller: http://localhost:8090/Country/create
+Json Body : {
+	"nombre":"Colombia"
+}
+
+
