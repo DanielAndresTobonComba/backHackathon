@@ -32,6 +32,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable()) // Deshabilitar CSRF
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers( "/auth/**").permitAll()
+                .requestMatchers( "/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/registro").permitAll() // Permitir todas las rutas bajo /auth
                 .anyRequest().authenticated() // Requiere autenticación para cualquier otra ruta
             )
