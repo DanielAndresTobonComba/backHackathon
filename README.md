@@ -18,7 +18,7 @@ El proyecto proporciona las siguientes funcionalidades:
 * **Registro**: Los usuarios pueden registrarse en la aplicación proporcionando un nombre de usuario, una contraseña y otros datos.
 * **Protección de rutas**: Las rutas de la aplicación están protegidas por autenticación, lo que significa que solo los usuarios autenticados pueden acceder a ellas.
 * **Generación de tokens**: Cuando un usuario se autentica, se genera un token JWT que se utiliza para verificar su identidad en futuras solicitudes.
-* ** Validación de datos**: Validacion de entrada de datos al momento de hacer la peticiones con mensages personalizados de retorno.
+* **Validación de datos**: Validacion de entrada de datos al momento de hacer la peticiones con mensages personalizados de retorno.
 
 ## Cómo funciona
 
