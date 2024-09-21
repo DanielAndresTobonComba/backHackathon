@@ -19,13 +19,13 @@ import com.artgallery.artgallery.Domain.Country.ICountry;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/Country")
+@RequestMapping("/country")
 public class CountryController {
 
     @Autowired 
     private ICountry service;
 
-    // http://localhost:8090/Country/create
+    // http://localhost:8090/country/create
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@Valid @RequestBody Country country, BindingResult result) {
