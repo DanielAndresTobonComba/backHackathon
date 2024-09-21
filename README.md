@@ -18,6 +18,7 @@ El proyecto proporciona las siguientes funcionalidades:
 * **Registro**: Los usuarios pueden registrarse en la aplicación proporcionando un nombre de usuario, una contraseña y otros datos.
 * **Protección de rutas**: Las rutas de la aplicación están protegidas por autenticación, lo que significa que solo los usuarios autenticados pueden acceder a ellas.
 * **Generación de tokens**: Cuando un usuario se autentica, se genera un token JWT que se utiliza para verificar su identidad en futuras solicitudes.
+* ** Validación de datos**: Validacion de entrada de datos al momento de hacer la peticiones con mensages personalizados de retorno.
 
 ## Cómo funciona
 
@@ -26,6 +27,7 @@ El proyecto proporciona las siguientes funcionalidades:
 3. El token JWT se devuelve al cliente, que lo almacena en su navegador o aplicación.
 4. En futuras solicitudes, el cliente envía el token JWT en el encabezado de la solicitud.
 5. El servidor verifica el token JWT y, si es válido, permite al cliente acceder a las rutas protegidas.
+
 
 ## Funcionalidad de Endpoints 
 
@@ -47,8 +49,8 @@ El proyecto proporciona las siguientes funcionalidades:
 }
 
 
-## Recuerde enviar en auth el token que le retorna el ingreso de usuario
 ## Crear pais (ramaProtegida) 
+#### Recuerde enviar en auth el token que le retorna el ingreso de usuario
 * URL Controller: http://localhost:8090/Country/create
 Json Body : {
 	"nombre":"Colombia"
