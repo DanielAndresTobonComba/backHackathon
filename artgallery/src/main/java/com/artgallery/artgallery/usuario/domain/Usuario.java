@@ -40,6 +40,8 @@ public class Usuario {
     @NotNull(message = "El Correo no puede estar vacio")
     @Column(unique = true)
     private String correo;
+    
+    private String fotoPerfil;
 
     @ManyToOne
     @JoinColumn(name = "rolId")

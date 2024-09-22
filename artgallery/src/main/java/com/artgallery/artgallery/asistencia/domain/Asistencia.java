@@ -1,11 +1,13 @@
-package com.artgallery.artgallery.estado.domain;
+package com.artgallery.artgallery.asistencia.domain;
 
+import com.artgallery.artgallery.usuario.domain.Usuario;
+import java.sql.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,12 +18,17 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Estado {
+public class Asistencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull(message = "El nombre no puede estar vacio")
-    @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
-    private String nombre;
+    private Date fechaEntrada;
+
+    private Date fechaSalida;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private Usuario usuario;
+
 }

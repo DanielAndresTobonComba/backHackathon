@@ -1,9 +1,7 @@
-package com.artgallery.artgallery.actividad.domain;
+package com.artgallery.artgallery.proyecto.domain;
 
-import java.sql.Date;
-
-import com.artgallery.artgallery.proyecto.domain.Proyecto;
 import com.artgallery.artgallery.usuario.domain.Usuario;
+import java.sql.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,16 +20,19 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Actividad {
+public class Proyecto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull(message = "El nombre no puede estar vacio")
     @Size(min = 1, max = 150, message = "El nombre debe tener entre 1 y 150 caracteres")
     private String nombre;
-    @NotNull(message = "El nombre no puede estar vacio")
-    @Size(min = 1, max = 1500, message = "El nombre debe tener entre 1 y 1500 caracteres")
+
     private String descripcion;
+
+    @NotNull(message = "El nombre no puede estar vacio")
+    @Size(min = 1, max = 3, message = "Las horas estipuladas son obligatorias")
+    private int horasEstipuladas;
 
     private int horasUsadas;
 
@@ -40,11 +41,7 @@ public class Actividad {
     private Date fechaFin;
 
     @ManyToOne
-    @JoinColumn(name = "desarrolladorId")
+    @JoinColumn(name = "liderId")
     private Usuario usuario;
-
-    @ManyToOne
-    @JoinColumn(name = "proyectoId")
-    private Proyecto proyecto;
 
 }
