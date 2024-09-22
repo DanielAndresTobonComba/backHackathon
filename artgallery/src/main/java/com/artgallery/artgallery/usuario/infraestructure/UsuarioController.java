@@ -8,6 +8,7 @@ import com.artgallery.artgallery.usuario.domain.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -18,8 +19,8 @@ public class UsuarioController {
     @Autowired
     private UsuarioImplement usuarioImplement;
 
-    @PostMapping("/crear")
-    public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
+    @PostMapping("/crear/{rolId}")
+    public ResponseEntity<Usuario> crearUsuario(@PathVariable Long rolId ,@RequestBody Usuario usuario) {
         Usuario nuevoUsuario = usuarioImplement.crearUsuario(usuario);
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);  
     }
@@ -32,7 +33,7 @@ public class UsuarioController {
     "apellido": "hernandez",
     "correo": "camiloht0918@gmaiOl.com",
     "fotoPerfil": "sdsdsd",
-     "rol": {
+    "rol": {
     "id": 1
   }
 } */
