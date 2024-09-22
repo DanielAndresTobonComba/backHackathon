@@ -23,7 +23,7 @@ import lombok.Setter;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @NotNull(message = "La cedula no debe estar vacia")
     @Size(min = 1, max = 18, message = "la cedula debe tener entre 1 y 18 caracteres")

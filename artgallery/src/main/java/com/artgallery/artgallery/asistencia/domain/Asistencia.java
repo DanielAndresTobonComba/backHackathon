@@ -21,7 +21,7 @@ import lombok.Setter;
 public class Asistencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private Date fechaEntrada;
 

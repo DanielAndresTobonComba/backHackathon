@@ -19,7 +19,7 @@ import lombok.Setter;
 public class Estado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @NotNull(message = "El nombre no puede estar vacio")
     @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
