@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/api")
 public class UsuarioController {
-     @Autowired
-     private UsuarioImplement usuarioImplement;
+    @Autowired
+    private UsuarioImplement usuarioImplement;
 
     @PostMapping("/crear")
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
@@ -25,3 +25,14 @@ public class UsuarioController {
     }
     
 }
+
+/*{
+    "cedula": "1005323441",
+    "nombre": "camilo",
+    "apellido": "hernandez",
+    "correo": "camiloht0918@gmaiOl.com",
+    "fotoPerfil": "sdsdsd",
+     "rol": {
+    "id": 1
+  }
+} */
