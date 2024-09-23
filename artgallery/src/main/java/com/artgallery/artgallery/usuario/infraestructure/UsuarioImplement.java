@@ -20,9 +20,7 @@ public class UsuarioImplement implements Iusuario {
 
     @Autowired
     private rolRepository rolRepo;
-
-
-
+    
     @Override
     public User crearUsuario(User usuario) {
         if(usuarioRepository.existsByCorreo(usuario.getCorreo())){

@@ -1,8 +1,5 @@
 package com.artgallery.artgallery.usuario.domain;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;

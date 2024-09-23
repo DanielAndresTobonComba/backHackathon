@@ -5,20 +5,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.artgallery.artgallery.proyecto.domain.Proyecto;
 import com.artgallery.artgallery.rol.domain.Rol;
-import com.artgallery.artgallery.rol.infraestructure.rolRepository;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,9 +21,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,6 +35,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User implements UserDetails {
 
     @Id
@@ -48,13 +46,13 @@ public class User implements UserDetails {
     @Size(min = 1, max = 18, message = "la cedula debe tener entre 1 y 18 caracteres")
     private String cedula;
 
-    @NotNull(message = "El nombre no puede estar vacio")
+    @NotNull(message = "El nombre de usuario no puede estar vacio")
     @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
     private String username;
 
-    @NotNull(message = "El Apellido no puede estar vacio")
+    @NotNull(message = "El Nombre no puede estar vacio")
     @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
-    private String apellido;
+    private String Nombre;
 
     @NotNull(message = "El Correo no puede estar vacio")
     @Column(unique = true)
@@ -65,10 +63,10 @@ public class User implements UserDetails {
     private String password;
     private String fotoPerfil;
 
+    @ManyToOne()
+    @JoinColumn(name = "id_rol")
+    private Rol rol;
 
-
-    @Enumerated(EnumType.STRING)
-    Role role;  
 
 /*     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
@@ -78,20 +76,21 @@ public class User implements UserDetails {
     )
     private Set<Rol> roles = new HashSet<>();  */
 
-
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
         name = "usuario_proyecto",
         joinColumns = @JoinColumn(name = "usuario_id"),
         inverseJoinColumns = @JoinColumn(name = "proyecto_id")
     )
+    @Builder.Default
     private Set<Proyecto> proyectos = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         // aqui se especifica cual es el rol del usuario
-        return List.of(new SimpleGrantedAuthority((role)));
+        return List.of(new SimpleGrantedAuthority((rol.getNombre())));
     }
+
     
 }

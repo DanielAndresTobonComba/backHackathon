@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -36,13 +35,13 @@ public class UsuarioController {
         }
         User user = new User();
         user.setUsername(usuarioDTO.getNombre());
-        user.setApellido(usuarioDTO.getApellido());
+        user.setNombre(usuarioDTO.getApellido());
         user.setCorreo(usuarioDTO.getCorreo());
         user.setCedula(usuarioDTO.getCedula());
         user.setPassword(usuarioDTO.getContraseña());
         user.setFotoPerfil(usuarioDTO.getFotoPerfil());
         Rol rol =  rolImp.obtenerRolPorId(usuarioDTO.getIdRol());
-        user.getRoles().add(rol);
+        user.setRol(rol);
         User nuevoUsuario = usuarioImplement.crearUsuario(user);
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);  
     }

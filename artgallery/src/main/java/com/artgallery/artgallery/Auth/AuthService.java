@@ -1,15 +1,12 @@
 package com.artgallery.artgallery.Auth;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.artgallery.artgallery.User.UserRepository;
 import com.artgallery.artgallery.jwt.JwtService;
-import com.artgallery.artgallery.usuario.domain.Role;
 import com.artgallery.artgallery.usuario.domain.User;
+import com.artgallery.artgallery.usuario.infraestructure.UsuarioRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final UserRepository userRepository;
+    private final UsuarioRepository userRepository;
     private final JwtService JwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -27,7 +24,10 @@ public class AuthService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(resquest.getUsername(), resquest.getPassword()));
 
         // generaremos el token
-        UserDetails user = userRepository.findByUsername(resquest.getUsername()).orElseThrow();
+        User user = userRepository.findByUsername(resquest.getUsername());
+        if (user == null) {
+            return  new AuthResponse("El usuario no existe");
+        }
 
         String token = JwtService.getToken(user);
 
@@ -36,24 +36,28 @@ public class AuthService {
             .build();
     }
 
-    public AuthResponse registro(RegisterRequest request) {
     
-        // Tomalos la calse registerRequest y construimos una clase user con los datos
+    public AuthResponse registro(RegisterRequest request) {
+        // Validar datos
+        if (request.getUsername() == null || request.getPassword() == null) {
+            throw new IllegalArgumentException("Username and password are required.");
+        }
+
+        // Construir el usuario con los datos
         User user = User.builder()
             .username(request.getUsername())
             .password(passwordEncoder.encode(request.getPassword()))
-            .firtsname(request.getFirstname())
-            .lastname(request.getLastname())
-            .country(request.getCountry())
-            .role(request.getRol())
+            .Nombre(request.name)
+            .rol(request.rol)
             .build();
 
-        userRepository.save(user); // llamo al repositorio del usuario y guardo en la db el usuario que acabe de crear
-
-        // retornamos el un objeto de la clase authresponse con el token 
+        // Guardar el usuario en la base de datos
+        userRepository.save(user);
+    
+        // Retornar un objeto de la clase AuthResponse con el token
         return AuthResponse.builder()
             .token(JwtService.getToken(user))
             .build();
-        }
+    }
 
 }

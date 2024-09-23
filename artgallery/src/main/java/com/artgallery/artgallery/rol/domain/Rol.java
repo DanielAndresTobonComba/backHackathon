@@ -1,16 +1,9 @@
 package com.artgallery.artgallery.rol.domain;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import com.artgallery.artgallery.usuario.domain.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,10 +20,6 @@ public class Rol {
     private Long id;
 
     private String nombre;
-    @ManyToMany(mappedBy = "roles")
-    @JsonIgnore 
-    private Set<User> usuarios = new HashSet<>();
-
 }
 
 
