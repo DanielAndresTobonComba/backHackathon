@@ -42,31 +42,35 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "La cedula no debe estar vacia")
-    @Size(min = 1, max = 18, message = "la cedula debe tener entre 1 y 18 caracteres")
-    private String cedula;
-
     @NotNull(message = "El nombre de usuario no puede estar vacio")
     @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
     private String username;
 
     @NotNull(message = "El Nombre no puede estar vacio")
     @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
-    private String Nombre;
+    private String nombre;
+
+    @NotNull(message = "La cedula no debe estar vacia")
+    @Size(min = 1, max = 18, message = "la cedula debe tener entre 1 y 18 caracteres")
+    private String cedula;
+
+    @NotNull(message = "la contraseña no puede estar vacia")
+    @Column()
+    private String password;
 
     @NotNull(message = "El Correo no puede estar vacio")
     @Column(unique = true)
     private String correo;
 
-    @NotNull(message = "la contraseña no puede estar vacia")
-    @Column()
-    private String password;
     private String fotoPerfil;
 
     @ManyToOne()
     @JoinColumn(name = "id_rol")
     private Rol rol;
 
+
+/*     @Enumerated(EnumType.STRING)
+    String role;   */
 
 /*     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
@@ -75,6 +79,7 @@ public class User implements UserDetails {
         inverseJoinColumns = @JoinColumn(name = "rol_id")
     )
     private Set<Rol> roles = new HashSet<>();  */
+
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(

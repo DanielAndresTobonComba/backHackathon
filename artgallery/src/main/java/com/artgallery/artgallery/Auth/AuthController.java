@@ -21,7 +21,7 @@ public class AuthController {
 
     // la rta sera de tipo authresponse (token) y recibimos los datos del usuario que es la clase de tipo (LoginRequest)
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login (@RequestBody LoginResquest resquest) {
+    public ResponseEntity<?> login (@RequestBody LoginResquest resquest) {
         // se devuelve un objeto vacio
         return ResponseEntity.ok(authservice.login(resquest));
     }
@@ -31,6 +31,7 @@ public class AuthController {
     @PostMapping("/registro")
     public  ResponseEntity<AuthResponse> registro (@RequestBody RegisterRequest resquest) {
         System.out.println("Registro llamado con: " + resquest);
+        
         return ResponseEntity.ok(authservice.registro(resquest));
     }
 }
