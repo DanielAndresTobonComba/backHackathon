@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.artgallery.artgallery.rol.domain.Rol;
 import com.artgallery.artgallery.rol.infraestructure.RolImplement;
-import com.artgallery.artgallery.usuario.domain.Usuario;
+import com.artgallery.artgallery.usuario.domain.User;
 import com.artgallery.artgallery.usuario.domain.UsuarioDTO;
 import com.artgallery.artgallery.utils.FieldValidation;
 
@@ -34,16 +34,16 @@ public class UsuarioController {
         if (result.hasFieldErrors()) {
             return FieldValidation.validation(result);
         }
-        Usuario user = new Usuario();
-        user.setNombre(usuarioDTO.getNombre());
+        User user = new User();
+        user.setUsername(usuarioDTO.getNombre());
         user.setApellido(usuarioDTO.getApellido());
         user.setCorreo(usuarioDTO.getCorreo());
         user.setCedula(usuarioDTO.getCedula());
-        user.setContraseña(usuarioDTO.getContraseña());
+        user.setPassword(usuarioDTO.getContraseña());
         user.setFotoPerfil(usuarioDTO.getFotoPerfil());
         Rol rol =  rolImp.obtenerRolPorId(usuarioDTO.getIdRol());
         user.getRoles().add(rol);
-        Usuario nuevoUsuario = usuarioImplement.crearUsuario(user);
+        User nuevoUsuario = usuarioImplement.crearUsuario(user);
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);  
     }
     

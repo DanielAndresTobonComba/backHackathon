@@ -1,14 +1,24 @@
 package com.artgallery.artgallery.usuario.domain;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.artgallery.artgallery.proyecto.domain.Proyecto;
 import com.artgallery.artgallery.rol.domain.Rol;
+import com.artgallery.artgallery.rol.infraestructure.rolRepository;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +38,8 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario {
+public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,7 +50,7 @@ public class Usuario {
 
     @NotNull(message = "El nombre no puede estar vacio")
     @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
-    private String nombre;
+    private String username;
 
     @NotNull(message = "El Apellido no puede estar vacio")
     @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
@@ -51,17 +62,21 @@ public class Usuario {
 
     @NotNull(message = "la contraseña no puede estar vacia")
     @Column()
-    private String contraseña;
-    
+    private String password;
     private String fotoPerfil;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+
+    @Enumerated(EnumType.STRING)
+    Role role;  
+
+/*     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
         name = "usuario_rol",
         joinColumns = @JoinColumn(name = "usuario_id"),
         inverseJoinColumns = @JoinColumn(name = "rol_id")
     )
-    private Set<Rol> roles = new HashSet<>();
+    private Set<Rol> roles = new HashSet<>();  */
 
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -71,5 +86,12 @@ public class Usuario {
         inverseJoinColumns = @JoinColumn(name = "proyecto_id")
     )
     private Set<Proyecto> proyectos = new HashSet<>();
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        // aqui se especifica cual es el rol del usuario
+        return List.of(new SimpleGrantedAuthority((role)));
+    }
     
 }

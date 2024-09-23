@@ -15,4 +15,5 @@ public class RegisterRequest {
     String firstname; // Cambia 'firtsname' a 'firstname'
     String lastname;
     String country;
+    String rol;
 }

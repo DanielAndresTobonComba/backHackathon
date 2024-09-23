@@ -3,13 +3,13 @@ package com.artgallery.artgallery.usuario.application;
 
 import java.util.List;
 
-import com.artgallery.artgallery.usuario.domain.Usuario;
+import com.artgallery.artgallery.usuario.domain.User;
 
 public interface Iusuario {
-    Usuario crearUsuario(Usuario usuario);
-    Usuario  buscarUsuarioPorCedula(String cedula);
-    List<Usuario> mostrarUsuarios();
+    User crearUsuario(User usuario);
+    User  buscarUsuarioPorCedula(String cedula);
+    List<User> mostrarUsuarios();
     void eliminar(String cedula);
-    Usuario actualizar(String Cedula, Usuario usuario);
+    User actualizar(String Cedula, User usuario);
 
 }

@@ -3,7 +3,7 @@ package com.artgallery.artgallery.rol.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.artgallery.artgallery.usuario.domain.Usuario;
+import com.artgallery.artgallery.usuario.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -29,7 +29,7 @@ public class Rol {
     private String nombre;
     @ManyToMany(mappedBy = "roles")
     @JsonIgnore 
-    private Set<Usuario> usuarios = new HashSet<>();
+    private Set<User> usuarios = new HashSet<>();
 
 }
 
