@@ -1,6 +1,6 @@
 package com.artgallery.artgallery.proyecto.domain;
 
-import com.artgallery.artgallery.usuario.domain.Usuario;
+import com.artgallery.artgallery.usuario.domain.User;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -43,6 +43,6 @@ public class Proyecto {
     private Date fechaFin;
 
     @ManyToMany(mappedBy = "proyectos")
-    private Set<Usuario> usuarios = new HashSet<>();
+    private Set<User> usuarios = new HashSet<>();
 
 }

@@ -1,6 +1,6 @@
 package com.artgallery.artgallery.asistencia.domain;
 
-import com.artgallery.artgallery.usuario.domain.Usuario;
+import com.artgallery.artgallery.usuario.domain.User;
 import java.sql.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +29,6 @@ public class Asistencia {
 
     @ManyToOne
     @JoinColumn(name = "userId")
-    private Usuario usuario;
+    private User usuario;
 
 }

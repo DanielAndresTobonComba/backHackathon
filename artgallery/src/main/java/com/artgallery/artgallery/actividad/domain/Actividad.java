@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import com.artgallery.artgallery.estado.domain.Estado;
 import com.artgallery.artgallery.proyecto.domain.Proyecto;
-import com.artgallery.artgallery.usuario.domain.Usuario;
+import com.artgallery.artgallery.usuario.domain.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -42,7 +42,7 @@ public class Actividad {
 
     @ManyToOne
     @JoinColumn(name = "desarrolladorId")
-    private Usuario usuario;
+    private User usuario;
 
     @ManyToOne
     @JoinColumn(name = "proyectoId")

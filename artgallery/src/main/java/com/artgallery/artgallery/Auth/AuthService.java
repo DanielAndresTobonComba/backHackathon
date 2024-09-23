@@ -6,10 +6,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.artgallery.artgallery.User.Role;
-import com.artgallery.artgallery.User.User;
 import com.artgallery.artgallery.User.UserRepository;
 import com.artgallery.artgallery.jwt.JwtService;
+import com.artgallery.artgallery.usuario.domain.Role;
+import com.artgallery.artgallery.usuario.domain.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,8 +37,7 @@ public class AuthService {
     }
 
     public AuthResponse registro(RegisterRequest request) {
-        
-
+    
         // Tomalos la calse registerRequest y construimos una clase user con los datos
         User user = User.builder()
             .username(request.getUsername())

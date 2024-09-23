@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.artgallery.artgallery.rol.infraestructure.rolRepository;
 import com.artgallery.artgallery.usuario.application.Iusuario;
-import com.artgallery.artgallery.usuario.domain.Usuario;
+import com.artgallery.artgallery.usuario.domain.User;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -24,7 +24,7 @@ public class UsuarioImplement implements Iusuario {
 
 
     @Override
-    public Usuario crearUsuario(Usuario usuario) {
+    public User crearUsuario(User usuario) {
         if(usuarioRepository.existsByCorreo(usuario.getCorreo())){
             throw new RuntimeException("El email ya está en uso");
         }
@@ -32,9 +32,9 @@ public class UsuarioImplement implements Iusuario {
     }
 
     @Override
-    public Usuario buscarUsuarioPorCedula(String cedula) {
+    public User buscarUsuarioPorCedula(String cedula) {
 
-        Optional<Usuario> usuario = usuarioRepository.findByCedula(cedula);
+        Optional<User> usuario = usuarioRepository.findByCedula(cedula);
         if (!usuario.isPresent()) {
             throw new EntityNotFoundException("usuario no encontrado con cedula: " + cedula);
         }
@@ -42,7 +42,7 @@ public class UsuarioImplement implements Iusuario {
     }
 
     @Override
-    public List<Usuario> mostrarUsuarios() {
+    public List<User> mostrarUsuarios() {
         return  usuarioRepository.findAll();
     }
 
@@ -52,8 +52,8 @@ public class UsuarioImplement implements Iusuario {
     }
 
     @Override
-    public Usuario actualizar(String Cedula, Usuario usuario) {
-        Optional<Usuario> usuarioBD = usuarioRepository.findByCedula(Cedula);
+    public User actualizar(String Cedula, User usuario) {
+        Optional<User> usuarioBD = usuarioRepository.findByCedula(Cedula);
         if (!usuarioBD.isPresent()) {
             throw new EntityNotFoundException("usuario no encontrado con cedula: " + Cedula);
         }
