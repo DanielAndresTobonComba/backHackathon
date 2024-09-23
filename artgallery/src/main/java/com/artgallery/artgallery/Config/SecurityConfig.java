@@ -1,7 +1,5 @@
 package com.artgallery.artgallery.Config;
 
-import static org.springframework.security.config.Customizer.*;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
