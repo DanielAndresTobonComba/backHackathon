@@ -1,4 +1,4 @@
-package com.artgallery.artgallery.Infraestructure.Country;
+package com.artgallery.artgallery.country.infrastructure;
 
 
 import java.util.HashMap;
@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.artgallery.artgallery.Domain.Country.Country;
-import com.artgallery.artgallery.Domain.Country.ICountry;
+import com.artgallery.artgallery.country.application.ICountry;
+import com.artgallery.artgallery.country.domain.Country;
+import com.artgallery.artgallery.utils.FieldValidation;
 
 import jakarta.validation.Valid;
 
@@ -30,19 +31,9 @@ public class CountryController {
     @PostMapping("/create")
     public ResponseEntity<?> create(@Valid @RequestBody Country country, BindingResult result) {
         if (result.hasFieldErrors()) {
-            return validation(result);
+            return FieldValidation.validation(result);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(service.crear(country));
-    }
-
-
-     private ResponseEntity<?> validation(BindingResult result) {
-        Map<String, String> errors = new HashMap<>();
-
-        result.getFieldErrors().forEach(err -> {
-            errors.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
-        });
-        return ResponseEntity.badRequest().body(errors);
     }
 
 }

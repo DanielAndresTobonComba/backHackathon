@@ -1,4 +1,4 @@
-package com.artgallery.artgallery.Domain.Country;
+package com.artgallery.artgallery.country.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
