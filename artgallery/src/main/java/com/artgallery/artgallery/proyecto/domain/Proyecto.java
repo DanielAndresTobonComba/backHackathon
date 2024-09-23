@@ -9,7 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -42,7 +44,12 @@ public class Proyecto {
 
     private Date fechaFin;
 
+    @ManyToOne()
+    @JoinColumn(name = "id_techlead")
+    private User techLead;
+
     @ManyToMany(mappedBy = "proyectos")
     private Set<User> usuarios = new HashSet<>();
 
+    
 }

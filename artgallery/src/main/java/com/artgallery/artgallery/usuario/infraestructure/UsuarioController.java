@@ -17,10 +17,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
 
 
 @RestController
-@RequestMapping("/api/crear")
+@RequestMapping("/api/user")
 public class UsuarioController {
     @Autowired
     private UsuarioImplement usuarioImplement;
@@ -28,7 +36,7 @@ public class UsuarioController {
     @Autowired
     private RolImplement rolImp;
 
-    @PostMapping("/{rolId}")
+    @PostMapping("")
     public ResponseEntity<?> crearUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO, BindingResult result) {
         if (result.hasFieldErrors()) {
             return FieldValidation.validation(result);
@@ -45,8 +53,29 @@ public class UsuarioController {
         User nuevoUsuario = usuarioImplement.crearUsuario(user);
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);  
     }
-    
-}
+
+    @GetMapping("/{cedula}")
+    public ResponseEntity<?> obtenerUsuarioPorCedula(@RequestBody String cedula) {
+        return ResponseEntity.ok().body(usuarioImplement.buscarUsuarioPorCedula(cedula));
+    }
+
+    @GetMapping("")
+    public ResponseEntity<?> mostrarUsuarios() {
+        return ResponseEntity.ok().body(usuarioImplement.mostrarUsuarios());
+    }
+
+    @DeleteMapping    
+    public ResponseEntity<?>  eliminarUsuario(@RequestBody String cedula){
+        User usuario =  usuarioImplement.buscarUsuarioPorCedula(cedula);
+        if(usuario != null){
+            usuarioImplement.eliminar(cedula);
+             return ResponseEntity.ok().body(usuario);
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+}     
 
 /*{
     "cedula": "1005323441",
