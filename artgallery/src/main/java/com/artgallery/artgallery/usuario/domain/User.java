@@ -69,6 +69,9 @@ public class User implements UserDetails {
     private Rol rol;
 
 
+/*     @Enumerated(EnumType.STRING)
+    String role;   */
+
 /*     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
         name = "usuario_rol",
@@ -76,6 +79,7 @@ public class User implements UserDetails {
         inverseJoinColumns = @JoinColumn(name = "rol_id")
     )
     private Set<Rol> roles = new HashSet<>();  */
+
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
