@@ -26,13 +26,14 @@ public class AuthService {
         // generaremos el token
         User user = userRepository.findByUsername(resquest.getUsername());
         if (user == null) {
-            return  new AuthResponse("El usuario no existe");
+            return  new AuthResponse("El usuario no existe" , "No disponible");
         }
 
         String token = JwtService.getToken(user);
 
         return AuthResponse.builder()
             .token(token)
+            .rol(user.getRol().getNombre())
             .build();
     }
 
@@ -45,10 +46,14 @@ public class AuthService {
 
         // Construir el usuario con los datos
         User user = User.builder()
+
+            .nombre(request.getNombre())
+            .cedula(request.getCedula())
             .username(request.getUsername())
+            .correo(request.getCorreo())
+            .fotoPerfil(request.getProfilepic())
             .password(passwordEncoder.encode(request.getPassword()))
-            .Nombre(request.name)
-            .rol(request.rol)
+            .rol(request.getRol())
             .build();
 
         // Guardar el usuario en la base de datos
