@@ -13,4 +13,5 @@ import com.artgallery.artgallery.usuario.domain.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     Optional<Usuario> findByCedula(String cedula);
     void deleteByCedula(String cedula);
+    Boolean existsByCorreo(String Correo);
 }

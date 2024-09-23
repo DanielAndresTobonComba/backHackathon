@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.artgallery.artgallery.rol.infraestructure.rolRepository;
 import com.artgallery.artgallery.usuario.application.Iusuario;
 import com.artgallery.artgallery.usuario.domain.Usuario;
 
@@ -17,8 +18,16 @@ public class UsuarioImplement implements Iusuario {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private rolRepository rolRepo;
+
+
+
     @Override
     public Usuario crearUsuario(Usuario usuario) {
+        if(usuarioRepository.existsByCorreo(usuario.getCorreo())){
+            throw new RuntimeException("El email ya está en uso");
+        }
         return usuarioRepository.save(usuario);
     }
 
@@ -48,7 +57,7 @@ public class UsuarioImplement implements Iusuario {
         if (!usuarioBD.isPresent()) {
             throw new EntityNotFoundException("usuario no encontrado con cedula: " + Cedula);
         }
-        return usuarioRepository.save(null);
+        return usuarioRepository.save(usuario);
     }
 
 }

@@ -11,4 +11,5 @@ public interface Iusuario {
     List<Usuario> mostrarUsuarios();
     void eliminar(String cedula);
     Usuario actualizar(String Cedula, Usuario usuario);
+
 }
