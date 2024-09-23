@@ -2,12 +2,14 @@ package com.artgallery.artgallery.proyecto.domain;
 
 import com.artgallery.artgallery.usuario.domain.Usuario;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -40,8 +42,7 @@ public class Proyecto {
 
     private Date fechaFin;
 
-    @ManyToOne
-    @JoinColumn(name = "liderId")
-    private Usuario usuario;
+    @ManyToMany(mappedBy = "proyectos")
+    private Set<Usuario> usuarios = new HashSet<>();
 
 }

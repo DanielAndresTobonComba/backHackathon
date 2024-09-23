@@ -1,4 +1,4 @@
-package com.artgallery.artgallery.Infraestructure.Country;
+package com.artgallery.artgallery.country.infrastructure;
 
 
 import java.util.HashMap;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.artgallery.artgallery.Domain.Country.Country;
-import com.artgallery.artgallery.Domain.Country.ICountry;
+import com.artgallery.artgallery.country.application.ICountry;
+import com.artgallery.artgallery.country.domain.Country;
 
 import jakarta.validation.Valid;
 

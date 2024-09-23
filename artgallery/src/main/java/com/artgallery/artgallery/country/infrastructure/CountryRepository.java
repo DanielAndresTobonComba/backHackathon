@@ -1,9 +1,9 @@
-package com.artgallery.artgallery.Infraestructure.Country;
+package com.artgallery.artgallery.country.infrastructure;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.artgallery.artgallery.Domain.Country.Country;
+import com.artgallery.artgallery.country.domain.Country;
 
 public interface CountryRepository extends JpaRepository <Country , Long> {
 

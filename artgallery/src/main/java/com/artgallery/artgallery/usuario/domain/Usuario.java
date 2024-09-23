@@ -1,13 +1,21 @@
 package com.artgallery.artgallery.usuario.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.artgallery.artgallery.proyecto.domain.Proyecto;
 import com.artgallery.artgallery.rol.domain.Rol;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -40,11 +48,28 @@ public class Usuario {
     @NotNull(message = "El Correo no puede estar vacio")
     @Column(unique = true)
     private String correo;
+
+    @NotNull(message = "la contraseña no puede estar vacia")
+    @Column()
+    private String contraseña;
     
     private String fotoPerfil;
 
-    @ManyToOne
-    @JoinColumn(name = "rolId")
-    private Rol rol;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "usuario_rol",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "rol_id")
+    )
+    private Set<Rol> roles = new HashSet<>();
 
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "usuario_proyecto",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "proyecto_id")
+    )
+    private Set<Proyecto> proyectos = new HashSet<>();
+    
 }

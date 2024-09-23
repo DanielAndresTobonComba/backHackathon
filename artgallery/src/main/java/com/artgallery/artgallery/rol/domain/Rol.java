@@ -1,9 +1,15 @@
 package com.artgallery.artgallery.rol.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.artgallery.artgallery.usuario.domain.Usuario;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,9 +21,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Rol {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-private String nombre;
+    private String nombre;
+    @ManyToMany(mappedBy = "roles")
+    private Set<Usuario> usuarios = new HashSet<>();
+
 }
+
+
+
+

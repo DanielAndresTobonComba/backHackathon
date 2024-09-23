@@ -2,6 +2,7 @@ package com.artgallery.artgallery.actividad.domain;
 
 import java.sql.Date;
 
+import com.artgallery.artgallery.estado.domain.Estado;
 import com.artgallery.artgallery.proyecto.domain.Proyecto;
 import com.artgallery.artgallery.usuario.domain.Usuario;
 import jakarta.persistence.Entity;
@@ -46,5 +47,9 @@ public class Actividad {
     @ManyToOne
     @JoinColumn(name = "proyectoId")
     private Proyecto proyecto;
+
+    @ManyToOne
+    @JoinColumn(name = "estado_id")
+    private Estado estado;
 
 }
