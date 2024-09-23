@@ -47,7 +47,7 @@ public class AuthService {
             .firtsname(request.getFirstname())
             .lastname(request.getLastname())
             .country(request.getCountry())
-            .role(Role.USER)
+            .role(request.getRol())
             .build();
 
         userRepository.save(user); // llamo al repositorio del usuario y guardo en la db el usuario que acabe de crear

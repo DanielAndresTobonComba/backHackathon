@@ -38,14 +38,15 @@ public class User implements UserDetails {
     String firtsname;
     String lastname;
     String country;
+    String role;
 
-    @Enumerated(EnumType.STRING)
-    Role role;
+/*     @Enumerated(EnumType.STRING)
+    Role role; */
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         // aqui se especifica cual es el rol del usuario
-        return List.of(new SimpleGrantedAuthority((role.name())));
+        return List.of(new SimpleGrantedAuthority((role)));
     }
 }
