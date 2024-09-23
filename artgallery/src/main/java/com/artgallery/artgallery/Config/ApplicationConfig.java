@@ -7,11 +7,9 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.artgallery.artgallery.User.UserRepository;
+import com.artgallery.artgallery.usuario.infraestructure.UsuarioRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApplicationConfig {
     
-    private final UserRepository userRepository;
+    private final UsuarioRepository userRepository;
 
     // estos seran metodos que permitiran al manejador acceder a las instancias de el authmanager
     @Bean
@@ -37,14 +35,12 @@ public class ApplicationConfig {
     }
     @Bean
     public PasswordEncoder passwordEncoder() {
-        
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public UserDetailsService UserDetailService() {
         // buscara el si el usuario esta ya guardado sino retornara una exception de nulo
-        return username -> userRepository.findByUsername(username)
-        .orElseThrow( () -> new UsernameNotFoundException("User not found"));
+        return username -> userRepository.findByUsername(username);
     }
 }
