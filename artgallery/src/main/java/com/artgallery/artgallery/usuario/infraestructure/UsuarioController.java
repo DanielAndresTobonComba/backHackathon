@@ -42,7 +42,7 @@ public class UsuarioController {
         user.setPassword(usuarioDTO.getContraseña());
         user.setFotoPerfil(usuarioDTO.getFotoPerfil());
         Rol rol =  rolImp.obtenerRolPorId(usuarioDTO.getIdRol());
-        user.getRoles().add(rol);
+        user.get().add(rol);
         User nuevoUsuario = usuarioImplement.crearUsuario(user);
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);  
     }

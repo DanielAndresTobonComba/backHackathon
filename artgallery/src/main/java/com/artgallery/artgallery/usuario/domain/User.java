@@ -68,7 +68,7 @@ public class User implements UserDetails {
 
 
     @Enumerated(EnumType.STRING)
-    Role role;  
+    String role;  
 
 /*     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
@@ -79,13 +79,13 @@ public class User implements UserDetails {
     private Set<Rol> roles = new HashSet<>();  */
 
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+/*     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
         name = "usuario_proyecto",
         joinColumns = @JoinColumn(name = "usuario_id"),
         inverseJoinColumns = @JoinColumn(name = "proyecto_id")
     )
-    private Set<Proyecto> proyectos = new HashSet<>();
+    private Set<Proyecto> proyectos = new HashSet<>(); */
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
