@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
-// ESTE ES EL FILTRO DEL JWT SI TODO SALE BIEN IRA A LA AUTENTICACION (AUTHCONTROLLER)
+// // ESTE ES EL FILTRO DEL JWT SI TODO SALE BIEN IRA A LA AUTENTICACION (AUTHCONTROLLER)
 
 @Component
 @RequiredArgsConstructor // hace que todos lo campos se inicializen en el constructor

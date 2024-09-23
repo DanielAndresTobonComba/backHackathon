@@ -1,5 +1,7 @@
 package com.artgallery.artgallery.Auth;
 
+import com.artgallery.artgallery.rol.domain.Rol;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +14,8 @@ import lombok.NoArgsConstructor;
 public class RegisterRequest {
     String username;
     String password;
-    String firstname; // Cambia 'firtsname' a 'firstname'
-    String lastname;
-    String country;
-    String rol;
+    String name; // Cambia 'firtsname' a 'firstname'
+    String email;
+    String profilepic;
+    Rol rol;
 }
