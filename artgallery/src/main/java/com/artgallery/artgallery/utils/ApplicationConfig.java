@@ -1,4 +1,4 @@
-package com.artgallery.artgallery.Config;
+package com.artgallery.artgallery.utils;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
