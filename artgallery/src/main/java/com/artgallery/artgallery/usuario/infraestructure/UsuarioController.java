@@ -70,8 +70,8 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuarioImplement.mostrarUsuarios());
     }
 
-    @DeleteMapping    
-    public ResponseEntity<?>  eliminarUsuario(@RequestBody String cedula){
+    @DeleteMapping("/{cedula}")  
+    public ResponseEntity<?>  eliminarUsuario(@PathVariable String cedula){
         User usuario =  usuarioImplement.buscarUsuarioPorCedula(cedula);
         if(usuario != null){
             usuarioImplement.eliminar(cedula);
