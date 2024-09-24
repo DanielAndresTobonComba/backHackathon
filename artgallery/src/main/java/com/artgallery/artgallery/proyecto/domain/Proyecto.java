@@ -1,6 +1,7 @@
 package com.artgallery.artgallery.proyecto.domain;
 
 import com.artgallery.artgallery.usuario.domain.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,12 +34,8 @@ public class Proyecto {
     private String nombre;
 
     private String descripcion;
-
-    @NotNull(message = "El nombre no puede estar vacio")
-    @Size(min = 1, max = 3, message = "Las horas estipuladas son obligatorias")
-    private int horasEstipuladas;
-
-    private int horasUsadas;
+    
+    private String horasUsadas;
 
     private Date fechaInicio;
 
@@ -49,7 +46,8 @@ public class Proyecto {
     private User techLead;
 
     @ManyToMany(mappedBy = "proyectos")
+    @JsonIgnore
     private Set<User> usuarios = new HashSet<>();
 
-    
+
 }
