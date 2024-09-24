@@ -30,4 +30,7 @@ public class ProyectoDTO {
     @NotNull(message = "el id del lider  no puede estar vacio")
     private Long  idLeader;
 
+    @NotNull(message = "el id del lider  no puede estar vacio")
+    private Long  idEstado;
+
 }

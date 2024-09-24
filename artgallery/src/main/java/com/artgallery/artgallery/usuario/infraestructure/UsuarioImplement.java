@@ -57,6 +57,15 @@ public class UsuarioImplement implements Iusuario {
         }
         return usuarioRepository.save(usuario);
     }
+
+    @Override
+    public User buscarUsuarioPorId(Long id) {
+        Optional<User> usuario = usuarioRepository.findById(id);
+        if (!usuario.isPresent()) {
+            throw new EntityNotFoundException("usuario no encontrado con id: " + id);
+        }
+        return usuario.get();
+    }
     
 
 }

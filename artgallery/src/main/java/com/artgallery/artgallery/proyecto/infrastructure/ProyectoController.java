@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.artgallery.artgallery.proyecto.domain.Proyecto;
 import com.artgallery.artgallery.proyecto.domain.ProyectoDTO;
 import com.artgallery.artgallery.proyecto.domain.UsuarioProyectoDTO;
+import com.artgallery.artgallery.usuario.domain.User;
 import com.artgallery.artgallery.usuario.infraestructure.UsuarioImplement;
 import com.artgallery.artgallery.utils.FieldValidation;
 
@@ -33,6 +34,8 @@ public class ProyectoController {
 
 
 
+
+
     @PostMapping("")
     public ResponseEntity<?> crearProyecto(@RequestBody ProyectoDTO proyectoDTO) {
         Proyecto proyecto = new Proyecto();
@@ -42,8 +45,14 @@ public class ProyectoController {
         proyecto.setFechaInicio(proyectoDTO.getFechaInicio());
         proyecto.setFechaFin(proyectoDTO.getFechaFin());
         proyecto.setHorasUsadas(proyectoDTO.getHorasUsadas());
-        proyecto.setTechLead(proyecto.getTechLead());
+       // TODO: handle exception
 
+        User user = usuarioImplement.buscarUsuarioPorId(proyectoDTO.getIdLeader());
+        if(user == null){
+            ResponseEntity.badRequest().build();
+        }
+        proyecto.setTechLead(user);
+        // Falta estado
         return ResponseEntity.ok().body(proyectoServiceImp.crearProyecto(proyecto));
     }
 
