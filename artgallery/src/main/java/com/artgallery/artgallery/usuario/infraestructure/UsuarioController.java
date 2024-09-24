@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 
@@ -50,8 +51,18 @@ public class UsuarioController {
     }
 
     @GetMapping("/{cedula}")
-    public ResponseEntity<?> obtenerUsuarioPorCedula(@RequestBody String cedula) {
+    public ResponseEntity<?> obtenerUsuarioPorCedula(@PathVariable String cedula) {
         return ResponseEntity.ok().body(usuarioImplement.buscarUsuarioPorCedula(cedula));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerUsuarioPorId(@PathVariable  Long id) {
+        if(usuarioImplement.buscarUsuarioPorId(id)!=null){
+            return ResponseEntity.ok().body(usuarioImplement.buscarUsuarioPorId(id));
+        }
+
+        return ResponseEntity.notFound().build();
+        
     }
 
     @GetMapping("")

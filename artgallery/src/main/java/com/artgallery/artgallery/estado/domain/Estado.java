@@ -28,9 +28,5 @@ public class Estado {
     @NotNull(message = "El nombre no puede estar vacio")
     @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
     private String nombre;
-
-    @ManyToOne
-    @JoinColumn(name = "proyecto_id")
-    private Proyecto proyecto;
-
+    
 }

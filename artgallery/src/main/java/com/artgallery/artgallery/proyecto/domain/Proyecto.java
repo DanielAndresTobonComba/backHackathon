@@ -1,5 +1,6 @@
 package com.artgallery.artgallery.proyecto.domain;
 
+import com.artgallery.artgallery.estado.domain.Estado;
 import com.artgallery.artgallery.usuario.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Date;
@@ -48,6 +49,8 @@ public class Proyecto {
     @ManyToMany(mappedBy = "proyectos")
     @JsonIgnore
     private Set<User> usuarios = new HashSet<>();
-
-
+    
+    @ManyToOne
+    @JoinColumn(name = "estado_id")
+    private Estado estado;
 }
