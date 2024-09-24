@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
-//@CrossOrigin(value = "*")
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -30,7 +30,7 @@ public class AuthController {
     // la rta se un authResponse y recibiremos los datos de usario de tipo RegisterRequest.
     @PostMapping("/registro")
     public  ResponseEntity<AuthResponse> registro (@RequestBody RegisterRequest resquest) {
-       
+        System.out.println("Registro llamado con: " + resquest);
         
         return ResponseEntity.ok(authservice.registro(resquest));
     }

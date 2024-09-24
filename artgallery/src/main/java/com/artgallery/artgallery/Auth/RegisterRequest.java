@@ -18,6 +18,5 @@ public class RegisterRequest {
     String profilepic;
     String cedula;
     String correo;
-    String rolRegistrador;
     Rol rol;
 }

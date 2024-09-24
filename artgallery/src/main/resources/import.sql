@@ -19,15 +19,6 @@ INSERT INTO estado (id, nombre) VALUES (3, 'En Revisión');
 INSERT INTO estado (id, nombre) VALUES (4, 'En Progreso');
 INSERT INTO estado (id, nombre) VALUES (5, 'Finalizado');
 
--- Estados por defecto
-INSERT INTO proyecto (id, descripcion, fecha_inicio, fecha_fin,horas_usadas, nombre, id_techlead, estado_id) VALUES (6, 'Desarrollo de app móvil', '2024-01-01', '2024-06-01', 400, 'App Móvil', 2,1);
-INSERT INTO proyecto (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, id_techlead , estado_id) VALUES (7, 'Implementación CRM', '2024-02-15', '2024-09-15', 500, 'CRM', 2 ,2);
-INSERT INTO proyecto (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, id_techlead, estado_id) VALUES (3, 'Sistema de inventarios', '2024-03-01', '2024-12-01', 700, 'Inventarios', 5,3);
-INSERT INTO proyecto (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, id_techlead, estado_id) VALUES (4, 'Web corporativa', '2024-04-01', '2024-10-01', 200, 'Corporativa', 5 ,1);
-INSERT INTO proyecto (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, id_techlead, estado_id) VALUES (5, 'Plataforma de e-learning', '2024-05-01', '2024-11-01',300, 'E-Learning', 5, 3);
-
-
-
 -- Asistencia por defecto
 INSERT INTO asistencia (fecha_entrada, fecha_salida, user_id) VALUES ('2024-01-01', '2024-01-01', 6);
 INSERT INTO asistencia (fecha_entrada, fecha_salida, user_id) VALUES ('2024-01-02', '2024-01-02', 2);
@@ -48,4 +39,4 @@ INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, n
 INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, estado_id, proyecto_id, desarrollador_id) VALUES (2, 'Desarrollo backend', '2024-02-01', '2024-03-15', 2, 'Backend', 1, 4, 3);
 INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, estado_id, proyecto_id, desarrollador_id) VALUES (3, 'Pruebas unitarias', '2024-05-01', '2024-05-15', 3, 'Pruebas', 2, 5, 4);
 INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, estado_id, proyecto_id, desarrollador_id) VALUES (4, 'Implementación de APIs', '2024-06-01', '2024-07-01', 4, 'APIs', 1, 5, 5);
-INSERT INTO actividad (id, descripcion, fecha_
+INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, estado_id, proyecto_id, desarrollador_id) VALUES (5, 'Integración con terceros', '2024-07-01', '2024-07-15', 5, 'Integración', 1, 6, 6);
