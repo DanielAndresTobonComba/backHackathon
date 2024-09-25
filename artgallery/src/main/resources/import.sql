@@ -1,22 +1,11 @@
 -- Roles por defecto
-
--- INSERT INTO rol ( nombre) VALUES ( 'Administrador');
--- INSERT INTO rol ( nombre) VALUES ( 'Desarrollador');
--- INSERT INTO rol ( nombre) VALUES ( 'Tech Lead');
--- INSERT INTO rol ( nombre) VALUES ( 'QA');
--- INSERT INTO rol ( nombre) VALUES ( 'Project Manager');
-/* 
-
 INSERT INTO rol ( nombre) VALUES ( 'Project Manager'); 
 INSERT INTO rol ( nombre) VALUES ( 'Tech Leader');
 INSERT INTO rol ( nombre) VALUES ( 'Desarrollador');
 
 
-
 -- Users por defecto
 INSERT INTO user (id , nombre, cedula, correo, foto_perfil, password, username, id_rol) VALUES ( 1 , 'Daniel', '12345', 'datc@gmail.com', 'foto1.jpg', '$2a$12$4c0UFBS0kccjtWx.PRTXoOFVqNGQcGY.qxTJIEtyRefsPjNblxUAm', 'datc', 3);
-
-
 
 INSERT INTO user (id, nombre, cedula, correo, foto_perfil, password, username, id_rol) 
 VALUES (2, 'Alejandra Gómez', '5432123456', 'alejandra.gomez@example.com', 'foto2.jpg', '$2a$12$EA0GplLYsAVhpP7gW5HnN.cljpsnivr01EH.YdxgI/KGd273vfuIe', 'agomez', 2);
@@ -25,7 +14,7 @@ INSERT INTO user (id, nombre, cedula, correo, foto_perfil, password, username, i
 VALUES (3, 'Roberto García', '1001001001', 'roberto.garcia@example.com', 'foto3.jpg', '$2a$12$hTMge4t8CdBLNTWEXNbb9e5zQPzxUEiy1JBwxFXdUciXjIAm5E47O', 'rgarcia', 3);
 
 INSERT INTO user (id, nombre, cedula, correo, foto_perfil, password, username, id_rol) 
-VALUES (4, 'Carlos Jhoan Aguilar', '1095822445', 'julian.ospina@example.com', 'perfil.jpeg', '$2a$12$u0qqLXrY7mHMKc463ICduusv83bNdAWty9uLH/R/l2lAKtI50CML6', 'carlosjhoan', 1);
+VALUES (4, 'Carlos Jhoan Aguilar', '1095822445', 'carlosjhoanguilar@gmail.com', 'perfil.jpeg', '$2a$12$u0qqLXrY7mHMKc463ICduusv83bNdAWty9uLH/R/l2lAKtI50CML6', 'carlosjhoan', 1);
 
 
 -- Estados por defecto
