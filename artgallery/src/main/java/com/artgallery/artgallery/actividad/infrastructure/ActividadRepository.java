@@ -11,6 +11,7 @@ import com.artgallery.artgallery.actividad.domain.Actividad;
 public interface ActividadRepository extends JpaRepository<Actividad,Long>{
 
     List<Actividad> findByUsuarioId(Long usuarioId);
+    List<Actividad> findByProyectoId(Long proyectoId);
     // @Query("SELECT a FROM Actividad a WHERE a.desarrollador.id = :userId")
     // List<Actividad> findActividadesByUserId(@Param("userId") Long userId);
 }
