@@ -14,9 +14,7 @@ public class EstadoServiceImp implements IEstado{
 
     @Autowired
     public EstadoRespository estadoRepository;
-
-
-
+    
     @Override
     public Estado crearEstado(Estado estado) {
         return estadoRepository.save(estado);

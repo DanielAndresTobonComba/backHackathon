@@ -8,5 +8,5 @@ import com.artgallery.artgallery.proyecto.domain.Proyecto;
 
 @Repository
 public interface ProyectoRepository extends JpaRepository<Proyecto,Long> {
-    List<Proyecto> findBytechLeadId(Long userId);
+    List<Proyecto> findByUsuariosId(Long userId);
 }

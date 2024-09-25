@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.artgallery.artgallery.actividad.application.IActividad;
 import com.artgallery.artgallery.actividad.domain.Actividad;
+import com.artgallery.artgallery.proyecto.domain.Proyecto;
+import com.artgallery.artgallery.proyecto.infrastructure.ProyectoRepository;
 import com.artgallery.artgallery.usuario.domain.User;
 import com.artgallery.artgallery.usuario.infraestructure.UsuarioRepository;
 
@@ -19,6 +21,9 @@ public class ActividadServiceImp implements IActividad{
 
     @Autowired
     private  UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private  ProyectoRepository proyectoRepository;
 
 
 
@@ -72,8 +77,16 @@ public class ActividadServiceImp implements IActividad{
         }
 
         return null;
+    }
 
-       
+    @Override
+    public List<Actividad> mostrarActividaesPorIdProyecto(Long proyectoId) {
+        Optional<Proyecto> proyecto = proyectoRepository.findById(proyectoId);
+        if(proyecto.isPresent()){
+            return actividadRepository.findByProyectoId(proyectoId);
+        }
+
+        return null;
     }
 
     @Override
@@ -87,6 +100,20 @@ public class ActividadServiceImp implements IActividad{
        }
        return null;
     }
+
+    @Override
+    public Actividad InsertarProyectoaActividad(Long idActividad, Long idProyecto) {
+       Optional<Proyecto> proyecto =  proyectoRepository.findById(idProyecto);
+       Optional<Actividad> actividad = actividadRepository.findById(idActividad);
+       if(proyecto.isPresent() && actividad.isPresent()){
+            Actividad actividad2 = actividad.get();
+            actividad2.setProyecto(proyecto.get());
+            return actividad2;
+       }
+       return null;
+    }
+
+  
 }
 
 

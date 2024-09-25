@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.artgallery.artgallery.actividad.domain.Actividad;
-import com.artgallery.artgallery.rol.infraestructure.rolRepository;
 import com.artgallery.artgallery.usuario.application.Iusuario;
 import com.artgallery.artgallery.usuario.domain.User;
 
@@ -19,9 +18,6 @@ public class UsuarioImplement implements Iusuario {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private rolRepository rolRepo;
-    
     @Override
     public User crearUsuario(User usuario) {
         if(usuarioRepository.existsByCorreo(usuario.getCorreo())){
