@@ -1,0 +1,14 @@
+package com.artgallery.artgallery.actividad.application;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.artgallery.artgallery.actividad.domain.Actividad;
+
+public interface IActividad {
+    Actividad crearActividad(Actividad actividad);
+    Optional<Actividad> buscarActividadPorId(Long id);
+    List<Actividad> mostrarActividades();
+    Actividad eliminarActividad(Long id);
+    Actividad actualizarActividad(Actividad actividad);
+}
