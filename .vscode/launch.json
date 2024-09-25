@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ArtgalleryApplication<artgallery>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.artgallery.artgallery.ArtgalleryApplication",
+            "projectName": "artgallery",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
