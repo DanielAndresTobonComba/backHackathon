@@ -5,7 +5,10 @@ import java.sql.Date;
 import com.artgallery.artgallery.estado.domain.Estado;
 import com.artgallery.artgallery.proyecto.domain.Proyecto;
 import com.artgallery.artgallery.usuario.domain.User;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,15 +43,15 @@ public class Actividad {
 
     private Date fechaFin;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "desarrolladorId")
     private User usuario;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "proyectoId")
     private Proyecto proyecto;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "estado_id")
     private Estado estado;
 
