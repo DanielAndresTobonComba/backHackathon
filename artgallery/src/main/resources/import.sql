@@ -4,7 +4,7 @@ INSERT INTO rol ( nombre) VALUES ( 'Desarrollador');
 INSERT INTO rol ( nombre) VALUES ( 'Tech Lead');
 INSERT INTO rol ( nombre) VALUES ( 'QA');
 INSERT INTO rol ( nombre) VALUES ( 'Project Manager');
-
+/* 
 -- Users por defecto
 INSERT INTO user (id, nombre, cedula, correo, foto_perfil, password, username, id_rol) VALUES (6, 'Christian Celis', '1234567890', 'christian.celis@example.com', 'foto1.jpg', '$2a$12$5tAA5yFIOV6Q3HoS9B2udeVyzr.Dp2IUn9BZ086PLW2HCxT9BbMPi', 'ccelis', 3);
 
@@ -36,4 +36,4 @@ INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, n
 INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, estado_id, proyecto_id, desarrollador_id) VALUES (2, 'Desarrollo backend', '2024-02-01', '2024-03-15', 2, 'Backend', 1, 4, 3);
 INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, estado_id, proyecto_id, desarrollador_id) VALUES (3, 'Pruebas unitarias', '2024-05-01', '2024-05-15', 3, 'Pruebas', 2, 5, 4);
 INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, estado_id, proyecto_id, desarrollador_id) VALUES (4, 'Implementación de APIs', '2024-06-01', '2024-07-01', 4, 'APIs', 1, 5, 5);
-INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, estado_id, proyecto_id, desarrollador_id) VALUES (5, 'Integración con terceros', '2024-07-01', '2024-07-15', 5, 'Integración', 1, 6, 6);
+INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, estado_id, proyecto_id, desarrollador_id) VALUES (5, 'Integración con terceros', '2024-07-01', '2024-07-15', 5, 'Integración', 1, 6, 6); */
