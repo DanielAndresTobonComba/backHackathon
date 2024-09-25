@@ -34,9 +34,11 @@ public class UsuarioController {
 
     @PostMapping("")
     public ResponseEntity<?> crearUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO, BindingResult result) {
+
         if (result.hasFieldErrors()) {
             return FieldValidation.validation(result);
         }
+
         User user = new User();
         user.setUsername(usuarioDTO.getNombre());
         user.setNombre(usuarioDTO.getApellido());
@@ -47,7 +49,8 @@ public class UsuarioController {
         Rol rol =  rolImp.obtenerRolPorId(usuarioDTO.getIdRol());
         user.setRol(rol);
         User nuevoUsuario = usuarioImplement.crearUsuario(user);
-        return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);  
+        return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
+         
     }
 
     @GetMapping("/{cedula}")
