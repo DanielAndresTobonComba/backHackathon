@@ -81,13 +81,9 @@ public class ActividadController {
     }
 
 
-    @GetMapping("/{userId}")
+    @GetMapping("showUsersActivity/{userId}")
     public ResponseEntity<?> mostrarActividadesPorIdusuario(@PathVariable Long userId) {
         List<Actividad> listaActividad = actividadServiceImp.mostrarActividaesPorIdUser(userId);
-        if(listaActividad==null){
-            ResponseEntity.notFound().build();
-
-        }
         return ResponseEntity.ok().body(listaActividad);
     }
 
