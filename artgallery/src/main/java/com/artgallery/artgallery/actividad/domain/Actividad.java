@@ -26,12 +26,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Actividad {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull(message = "El nombre no puede estar vacio")
     @Size(min = 1, max = 150, message = "El nombre debe tener entre 1 y 150 caracteres")
     private String nombre;
+
     @NotNull(message = "El nombre no puede estar vacio")
     @Size(min = 1, max = 1500, message = "El nombre debe tener entre 1 y 1500 caracteres")
     private String descripcion;

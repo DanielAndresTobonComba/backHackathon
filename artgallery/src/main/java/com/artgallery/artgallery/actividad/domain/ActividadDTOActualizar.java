@@ -2,6 +2,10 @@ package com.artgallery.artgallery.actividad.domain;
 
 import java.sql.Date;
 
+import com.artgallery.artgallery.estado.domain.Estado;
+import com.artgallery.artgallery.proyecto.domain.Proyecto;
+import com.artgallery.artgallery.usuario.domain.User;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -29,7 +33,7 @@ public class ActividadDTOActualizar {
 
     public Long idUser;
 
-    public long idProyecto;
+    public Long idProyecto;
 
     public Long idEstado;
 }
