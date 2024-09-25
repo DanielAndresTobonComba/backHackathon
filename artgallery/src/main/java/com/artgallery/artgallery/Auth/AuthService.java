@@ -42,39 +42,44 @@ public class AuthService {
 
     
     public AuthResponse registro(RegisterRequest request) {
-        // Validar datos
-        if (request.getUsername() == null || request.getPassword() == null || request.getRol() == null) {
-            throw new IllegalArgumentException("Username and password are required.");
-        }
-
-        if (request.getRolRegistrador().equals("Project Manager")) {
-
-                    // Construir el usuario con los datos
-        User user = User.builder()
-
-        .nombre(request.getNombre())
-        .cedula(request.getCedula())
-        .username(request.getUsername())
-        .correo(request.getCorreo())
-        .fotoPerfil(request.getProfilepic())
-        .password(passwordEncoder.encode(request.getPassword()))
-        .rol(request.getRol())
-        .build();
-
-        // Guardar el usuario en la base de datos
-        userRepository.save(user);
-
-        // Retornar un objeto de la clase AuthResponse con el token
-        return AuthResponse.builder()
-            .cedula(user.getCedula())
-            .token(JwtService.getToken(user))
-            .rol(request.getRol().getNombre())
-            .nombre(user.getNombre())
-            .foto(user.getFotoPerfil())
-            .build();
+        try {
+            // Validar que los campos obligatorios no sean nulos
+            if (request.getUsername() == null || request.getPassword() == null || request.getRol() == null) {
+                return new AuthResponse("Datos inválidos", "Error", "No disponible", "No disponible", "No disponible");
             }
-
-        return new AuthResponse("No tiene permisos" , "No tiene permisos" , "No disponible" , "No disponible" , "No diponible");
+    
+            if (request.getRolRegistrador().equals("Project Manager")) {
+                User user = User.builder()
+                    .nombre(request.getNombre())
+                    .cedula(request.getCedula())
+                    .username(request.getUsername())
+                    .correo(request.getCorreo())
+                    .fotoPerfil(request.getProfilepic())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .rol(request.getRol()) // Asegúrate de que el rol esté bien asignado
+                    .build();
+    
+                userRepository.save(user);  // Aquí puede ocurrir el error, verifica el estado de la BD
+    
+                String token = JwtService.getToken(user);
+    
+                return AuthResponse.builder()
+                    .cedula(user.getCedula())
+                    .token(token)
+                    .rol(user.getRol().getNombre())
+                    .nombre(user.getNombre())
+                    .foto(user.getFotoPerfil())
+                    .build();
+            }
+            
+            return new AuthResponse("No tiene permisos", "No tiene permisos", "No disponible", "No disponible", "No disponible");
+    
+        } catch (Exception e) {
+            // Capturar cualquier excepción inesperada y devolver un error legible
+            return new AuthResponse("Error en el servidor", "Error", "No disponible", "No disponible", "No disponible");
+        }
     }
+    
+    
 
 }
