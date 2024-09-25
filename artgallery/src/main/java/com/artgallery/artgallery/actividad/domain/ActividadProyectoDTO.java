@@ -9,6 +9,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ActividadProyectoDTO {
     public Long idProyecto;
-
     public Long idActividad;
 }
