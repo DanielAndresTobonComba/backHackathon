@@ -26,7 +26,7 @@ public class AuthService {
         // generaremos el token
         User user = userRepository.findByUsername(resquest.getUsername());
         if (user == null) {
-            return  new AuthResponse("El usuario no existe" , "No disponible");
+            return  new AuthResponse("El usuario no existe" , "No disponible" , "No disponible" , "No disponible");
         }
 
         String token = JwtService.getToken(user);
@@ -34,6 +34,8 @@ public class AuthService {
         return AuthResponse.builder()
             .token(token)
             .rol(user.getRol().getNombre())
+            .nombre(user.getNombre())
+            .foto(user.getFotoPerfil())
             .build();
     }
 
@@ -44,25 +46,33 @@ public class AuthService {
             throw new IllegalArgumentException("Username and password are required.");
         }
 
-        // Construir el usuario con los datos
+        if (request.getRolRegistrador().equals("Project Manager")) {
+
+                    // Construir el usuario con los datos
         User user = User.builder()
 
-            .nombre(request.getNombre())
-            .cedula(request.getCedula())
-            .username(request.getUsername())
-            .correo(request.getCorreo())
-            .fotoPerfil(request.getProfilepic())
-            .password(passwordEncoder.encode(request.getPassword()))
-            .rol(request.getRol())
-            .build();
+        .nombre(request.getNombre())
+        .cedula(request.getCedula())
+        .username(request.getUsername())
+        .correo(request.getCorreo())
+        .fotoPerfil(request.getProfilepic())
+        .password(passwordEncoder.encode(request.getPassword()))
+        .rol(request.getRol())
+        .build();
 
         // Guardar el usuario en la base de datos
         userRepository.save(user);
-    
+
         // Retornar un objeto de la clase AuthResponse con el token
         return AuthResponse.builder()
             .token(JwtService.getToken(user))
+            .rol(request.getRol().getNombre())
+            .nombre(user.getNombre())
+            .foto(user.getFotoPerfil())
             .build();
+            }
+
+        return new AuthResponse("No tiene permisos" , "No tiene permisos" , "No disponible" , "No disponible");
     }
 
 }
