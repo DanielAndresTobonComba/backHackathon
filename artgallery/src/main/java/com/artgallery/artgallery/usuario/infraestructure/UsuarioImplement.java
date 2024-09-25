@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.artgallery.artgallery.actividad.domain.Actividad;
 import com.artgallery.artgallery.rol.infraestructure.rolRepository;
 import com.artgallery.artgallery.usuario.application.Iusuario;
 import com.artgallery.artgallery.usuario.domain.User;
@@ -65,6 +66,12 @@ public class UsuarioImplement implements Iusuario {
             throw new EntityNotFoundException("usuario no encontrado con id: " + id);
         }
         return usuario.get();
+    }
+
+    @Override
+    public List<Actividad> actividadesPorUsuarioId(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'actividadesPorUsuarioId'");
     }
     
 

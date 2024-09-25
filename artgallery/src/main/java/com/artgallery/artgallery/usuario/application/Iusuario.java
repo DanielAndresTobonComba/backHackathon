@@ -3,6 +3,7 @@ package com.artgallery.artgallery.usuario.application;
 
 import java.util.List;
 
+import com.artgallery.artgallery.actividad.domain.Actividad;
 import com.artgallery.artgallery.usuario.domain.User;
 
 public interface Iusuario {
@@ -12,5 +13,5 @@ public interface Iusuario {
     List<User> mostrarUsuarios();
     void eliminar(String cedula);
     User actualizar(String Cedula, User usuario);
-
+    List<Actividad> actividadesPorUsuarioId(Long id);
 }
