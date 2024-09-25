@@ -116,23 +116,46 @@ public ResponseEntity<?> asignarUserActividad(@RequestBody ActividadUsuarioDTO a
     
 
 
-    // @PutMapping("/{id}")
-    // public ResponseEntity<?> actualizarActividad(@PathVariable Long id, @Valid  @RequestBody ActividadDTOActualizar actividadDTO, BindingResult result) {
-    //     if (result.hasFieldErrors()) {
-    //         return FieldValidation.validation(result);
-    //     }
-    //     Optional<Actividad> actividadOp = actividadServiceImp.buscarActividadPorId(id);
-    //     if(actividadOp.isPresent()){
-    //         Actividad actividad = actividadOp.get();
-    //         actividad.setNombre(actividadDTO.getNombre());
-    //         actividad.setDescripcion(actividadDTO.getDescripcion());
-    //         actividad.setFechaInicio(actividadDTO.getFechaInicio());
-    //         actividad.setFechaFin(actividadDTO.getFechaFin());
-    //         actividad.setHorasUsadas(actividadDTO.getHorasUsadas());
 
-    //         proyectoServiceImp.buscarProyectoPorId(actividadDTO.)
-    //     }
-    //     return ResponseEntity.notFound().build();
-    // }
+@PutMapping("/actualizarActividad/{id}")
+public ResponseEntity<?> actualizarActividad(@PathVariable Long id, @Valid @RequestBody Actividad actividadActualizada, BindingResult result) {
+
+    if (result.hasFieldErrors()) {
+        return FieldValidation.validation(result);
+    }
+
+    Optional<Actividad> actividadOp = actividadServiceImp.buscarActividadPorId(id);
+    System.out.println("llegue a buscar la actividad");
+    System.out.println(actividadOp);
+    
+    if (actividadOp.isPresent()) {
+        Actividad actividadExistente = actividadOp.get();
+        
+        // Actualizando los campos de la actividad existente
+        actividadExistente.setNombre(actividadActualizada.getNombre());
+        actividadExistente.setDescripcion(actividadActualizada.getDescripcion());
+        actividadExistente.setHorasUsadas(actividadActualizada.getHorasUsadas());
+        actividadExistente.setFechaInicio(actividadActualizada.getFechaInicio());
+        actividadExistente.setFechaFin(actividadActualizada.getFechaFin());
+
+        // Actualizar el usuario, proyecto y estado solo si es necesario
+        if (actividadActualizada.getUsuario() != null) {
+            actividadExistente.setUsuario(actividadActualizada.getUsuario());
+        }
+        if (actividadActualizada.getProyecto() != null) {
+            actividadExistente.setProyecto(actividadActualizada.getProyecto());
+        }
+        if (actividadActualizada.getEstado() != null) {
+            actividadExistente.setEstado(actividadActualizada.getEstado());
+        }
+
+        // voy a la implementacion de la interfaz
+        Actividad actividadGuardada = actividadServiceImp.actualizarActividad(actividadExistente);
+        return ResponseEntity.ok().body(actividadGuardada);
+    }
+
+    return ResponseEntity.notFound().build();
+}
+
 
 }

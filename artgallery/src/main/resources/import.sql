@@ -1,7 +1,7 @@
 -- Roles por defecto
-INSERT INTO rol ( nombre) VALUES ( 'Project Manager'); 
-INSERT INTO rol ( nombre) VALUES ( 'Tech Leader');
-INSERT INTO rol ( nombre) VALUES ( 'Desarrollador');
+-- INSERT INTO rol ( nombre) VALUES ( 'Project Manager'); 
+-- INSERT INTO rol ( nombre) VALUES ( 'Tech Leader');
+-- INSERT INTO rol ( nombre) VALUES ( 'Desarrollador');
 
 
 -- Users por defecto
@@ -18,10 +18,10 @@ VALUES (4, 'Carlos Jhoan Aguilar', '1095822445', 'carlosjhoanguilar@gmail.com', 
 
 
 -- Estados por defecto
-INSERT INTO estado (id, nombre) VALUES (1, 'En Progreso');
+/* INSERT INTO estado (id, nombre) VALUES (1, 'En Progreso');
 INSERT INTO estado (id, nombre) VALUES (2, 'Finalizado');
 INSERT INTO estado (id, nombre) VALUES (3, 'En Revisión');
-INSERT INTO estado (id, nombre) VALUES (4, 'Pendiente');
+INSERT INTO estado (id, nombre) VALUES (4, 'Pendiente'); */
 
 INSERT INTO proyecto (id, nombre, descripcion,  fecha_inicio, fecha_fin, horas_usadas, estado_id, id_techlead) 
 VALUES (1, 'kktech', 'Crear la bitacora', '2024-09-01', '2024-09-05', 150, 1, 2);
@@ -54,3 +54,7 @@ INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, n
 INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, estado_id, proyecto_id, desarrollador_id) VALUES (2, 'Desarrollo backend', '2024-02-01', '2024-03-15', 2, 'Backend', 1, 2, 1);
 INSERT INTO actividad (id, descripcion, fecha_inicio, fecha_fin, horas_usadas, nombre, estado_id, proyecto_id, desarrollador_id) VALUES (3, 'Pruebas unitarias', '2024-05-01', '2024-05-15', 3, 'Pruebas', 2, 1, 3);
 
+/* 
+delete from user where id > 0;
+delete from rol where id > 0;
+ */

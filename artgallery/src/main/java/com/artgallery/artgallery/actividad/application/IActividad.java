@@ -13,4 +13,5 @@ public interface IActividad {
     Actividad eliminarActividad(Long id);
     Actividad actualizarActividad(Actividad actividad);
     Actividad InsertarActividadAUsuario(Long idUser, Long idActividad);
+    
 }
