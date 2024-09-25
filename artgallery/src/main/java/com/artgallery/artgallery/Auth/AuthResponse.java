@@ -14,4 +14,5 @@ public class AuthResponse {
     String rol;
     String nombre; 
     String foto;
+    String cedula;
 }
