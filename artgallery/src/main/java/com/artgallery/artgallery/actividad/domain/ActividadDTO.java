@@ -26,4 +26,6 @@ public class ActividadDTO {
     public Date fechaInicio;
 
     public Date fechaFin;
+
+    public Long idProyecto;
 }

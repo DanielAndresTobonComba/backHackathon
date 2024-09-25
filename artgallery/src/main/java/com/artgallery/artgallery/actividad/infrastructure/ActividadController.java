@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.artgallery.artgallery.actividad.domain.Actividad;
 import com.artgallery.artgallery.actividad.domain.ActividadDTO;
+import com.artgallery.artgallery.actividad.domain.ActividadProyectoDTO;
 import com.artgallery.artgallery.actividad.domain.ActividadUsuarioDTO;
-import com.artgallery.artgallery.estado.infrastructure.EstadoServiceImp;
+import com.artgallery.artgallery.proyecto.domain.Proyecto;
 import com.artgallery.artgallery.proyecto.infrastructure.ProyectoServiceImp;
-import com.artgallery.artgallery.usuario.infraestructure.UsuarioImplement;
 import com.artgallery.artgallery.utils.FieldValidation;
 
 import jakarta.validation.Valid;
@@ -33,15 +34,9 @@ public class ActividadController {
     @Autowired
     private ActividadServiceImp actividadServiceImp;
 
-    @Autowired
-    private UsuarioImplement usuarioImplement;
 
     @Autowired
     private ProyectoServiceImp proyectoServiceImp;
-
-    @Autowired
-    private EstadoServiceImp estadoServiceImp;
-
 
 
      @PostMapping("")
@@ -57,6 +52,11 @@ public class ActividadController {
         actividad.setFechaFin(actividadDTO.getFechaFin());
         actividad.setHorasUsadas(actividad.getHorasUsadas());
 
+        Proyecto proyecto = proyectoServiceImp.buscarProyectoPorId(actividadDTO.getIdProyecto());
+        if(proyecto==null){
+            return  new ResponseEntity<>("El proyecto no existe", HttpStatus.NOT_FOUND);
+        }
+        actividad.setProyecto(proyecto);
         return ResponseEntity.ok().body(actividadServiceImp.crearActividad(actividad));
     }
     
@@ -88,6 +88,14 @@ public class ActividadController {
     }
 
 
+    @GetMapping("showProyectActivitys/{proyectId}")
+    public ResponseEntity<?> mostrarActividadesPorIdProyecto(@PathVariable Long proyectId) {
+        List<Actividad> listaActividad = actividadServiceImp.mostrarActividaesPorIdUser(proyectId);
+        return ResponseEntity.ok().body(listaActividad);
+    }
+
+
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarActividad(@PathVariable Long id){
@@ -104,6 +112,16 @@ public class ActividadController {
 @PutMapping("")
 public ResponseEntity<?> asignarUserActividad(@RequestBody ActividadUsuarioDTO actividadUsuarioDTO){
    Actividad actividad = actividadServiceImp.InsertarActividadAUsuario(actividadUsuarioDTO.getIdUser(), actividadUsuarioDTO.getIdActividad());
+   if(actividad == null){
+    ResponseEntity.internalServerError().build();
+   }
+    return ResponseEntity.ok().body(actividad);
+}
+
+
+@PutMapping("/proyecto")
+public ResponseEntity<?> asignarActividadProyecto(@RequestBody ActividadProyectoDTO actividadProyectoDTO){
+   Actividad actividad = actividadServiceImp.InsertarActividadAUsuario(actividadProyectoDTO.getIdActividad(), actividadProyectoDTO.getIdProyecto());
    if(actividad == null){
     ResponseEntity.internalServerError().build();
    }
