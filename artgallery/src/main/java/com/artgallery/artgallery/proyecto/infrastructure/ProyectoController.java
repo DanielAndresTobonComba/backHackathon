@@ -62,6 +62,11 @@ public class ProyectoController {
         return ResponseEntity.ok().body(proyectoServiceImp.mostrarProyectos());
     }
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> mostrarProyectosPorUserId(@PathVariable Long idUser) {
+        return ResponseEntity.ok().body(proyectoServiceImp.mostrarProyectoPorUserId(idUser));
+    }
+
     @DeleteMapping("/{id}")    
     public void  eliminarUsuario(@PathVariable Long id){
         proyectoServiceImp.eliminarProyecto(id);

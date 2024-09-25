@@ -10,6 +10,8 @@ public interface IProyecto {
     List<Proyecto> mostrarProyectos();
     void eliminarProyecto(Long id);
     User asignarUsuarioaProyecto(String cedula, Long idProyecto);
+    List<Proyecto> mostrarProyectoPorUserId(Long id);
+    
 }
 
 

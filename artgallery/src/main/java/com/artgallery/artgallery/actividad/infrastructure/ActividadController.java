@@ -16,11 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.artgallery.artgallery.actividad.domain.Actividad;
 import com.artgallery.artgallery.actividad.domain.ActividadDTO;
+import com.artgallery.artgallery.actividad.domain.ActividadUsuarioDTO;
 import com.artgallery.artgallery.estado.infrastructure.EstadoServiceImp;
 import com.artgallery.artgallery.proyecto.infrastructure.ProyectoServiceImp;
+import com.artgallery.artgallery.usuario.infraestructure.UsuarioImplement;
 import com.artgallery.artgallery.utils.FieldValidation;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 @RequestMapping("/api/actividad")
@@ -28,6 +32,9 @@ public class ActividadController {
 
     @Autowired
     private ActividadServiceImp actividadServiceImp;
+
+    @Autowired
+    private UsuarioImplement usuarioImplement;
 
     @Autowired
     private ProyectoServiceImp proyectoServiceImp;
@@ -71,6 +78,18 @@ public class ActividadController {
     }
 
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> mostrarActividadesPorIdusuario(@PathVariable Long userId) {
+        List<Actividad> listaActividad = actividadServiceImp.mostrarActividaesPorIdUser(userId);
+        if(listaActividad==null){
+            ResponseEntity.notFound().build();
+
+        }
+        return ResponseEntity.ok().body(listaActividad);
+    }
+
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarActividad(@PathVariable Long id){
         Actividad actividad = actividadServiceImp.eliminarActividad(id);
@@ -82,6 +101,16 @@ public class ActividadController {
         }
         return ResponseEntity.ok().body(actividad);
     }
+
+@PutMapping("")
+public ResponseEntity<?> asignarUserActividad(@RequestBody ActividadUsuarioDTO actividadUsuarioDTO){
+   Actividad actividad = actividadServiceImp.InsertarActividadAUsuario(actividadUsuarioDTO.getIdUser(), actividadUsuarioDTO.getIdActividad());
+   if(actividad == null){
+    ResponseEntity.internalServerError().build();
+   }
+    return ResponseEntity.ok().body(actividad);
+}
+    
 
 
     // @PutMapping("/{id}")
@@ -99,10 +128,8 @@ public class ActividadController {
     //         actividad.setHorasUsadas(actividadDTO.getHorasUsadas());
 
     //         proyectoServiceImp.buscarProyectoPorId(actividadDTO.)
-
-
     //     }
     //     return ResponseEntity.notFound().build();
     // }
-        
+
 }
