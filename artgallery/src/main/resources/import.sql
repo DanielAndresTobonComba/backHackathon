@@ -7,10 +7,7 @@ INSERT INTO rol ( nombre) VALUES ( 'Project Manager');
 
 -- Users por defecto
 INSERT INTO user (id, nombre, cedula, correo, foto_perfil, password, username, id_rol) VALUES (6, 'Christian Celis', '1234567890', 'christian.celis@example.com', 'foto1.jpg', '$2a$12$5tAA5yFIOV6Q3HoS9B2udeVyzr.Dp2IUn9BZ086PLW2HCxT9BbMPi', 'ccelis', 3);
-INSERT INTO user (id, nombre, cedula, correo, foto_perfil, password, username, id_rol) VALUES (2, 'Ariadna Gomez', '2345678901', 'ariadna.gomez@example.com', 'foto2.jpg', 'pass234', 'agomez', 1);
-INSERT INTO user (id, nombre, cedula, correo, foto_perfil, password, username, id_rol) VALUES (3, 'Luis Pérez', '3456789012', 'luis.perez@example.com', 'foto3.jpg', 'pass345', 'lperez', 2);
-INSERT INTO user (id, nombre, cedula, correo, foto_perfil, password, username, id_rol) VALUES (4, 'Sofía Rojas', '4567890123', 'sofia.rojas@example.com', 'foto4.jpg', 'pass456', 'srojas', 4);
-INSERT INTO user (id, nombre, cedula, correo, foto_perfil, password, username, id_rol) VALUES (5, 'Carlos Gómez', '5678901234', 'carlos.gomez@example.com', 'foto5.jpg', 'pass567', 'cgomez', 5);
+
 
 -- Estados por defecto
 INSERT INTO estado (id, nombre) VALUES (1, 'En Progreso');
