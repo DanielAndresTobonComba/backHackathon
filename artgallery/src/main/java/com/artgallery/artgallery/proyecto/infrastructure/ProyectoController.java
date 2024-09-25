@@ -28,10 +28,6 @@ public class ProyectoController {
     @Autowired
     private UsuarioImplement usuarioImplement;
 
-
-
-
-
     @PostMapping("")
     public ResponseEntity<?> crearProyecto(@RequestBody ProyectoDTO proyectoDTO) {
         Proyecto proyecto = new Proyecto();
@@ -62,9 +58,9 @@ public class ProyectoController {
         return ResponseEntity.ok().body(proyectoServiceImp.mostrarProyectos());
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<?> mostrarProyectosPorUserId(@PathVariable Long idUser) {
-        return ResponseEntity.ok().body(proyectoServiceImp.mostrarProyectoPorUserId(idUser));
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> mostrarProyectosPorUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok().body(proyectoServiceImp.mostrarProyectoPorUserId(userId));
     }
 
     @DeleteMapping("/{id}")    
@@ -72,7 +68,7 @@ public class ProyectoController {
         proyectoServiceImp.eliminarProyecto(id);
     }
 
-    @PutMapping("")
+    @PutMapping("/asignarProyectoAUsuario")
     public  ResponseEntity<?>asignarProyectoAUsuario(@RequestBody UsuarioProyectoDTO usuarioProyectoDTO ) {
         return  ResponseEntity.ok().body(proyectoServiceImp.asignarUsuarioaProyecto(usuarioProyectoDTO.getCedulaUsuario(), usuarioProyectoDTO.getIdProyecto()));
     }
