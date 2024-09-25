@@ -64,7 +64,7 @@ public class ProyectoServiceImp implements IProyecto{
             Proyecto proyecto2 = proyecto.get();
             proyecto2.getUsuarios().add(usuario.get());
             usuario.get().getProyectos().add(proyecto.get());
-            proyectoRepository.save(proyecto2);
+            usuarioRepository.save(usuario.get());
             return  usuario.get();
         }
         return  null;
@@ -73,7 +73,7 @@ public class ProyectoServiceImp implements IProyecto{
 
     @Override
     public List<Proyecto> mostrarProyectoPorUserId(Long id) {
-        return proyectoRepository.findBytechLeadId(id); 
+        return proyectoRepository.findByUsuariosId(id); 
     }
 
   
