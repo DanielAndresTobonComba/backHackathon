@@ -2,7 +2,6 @@ package com.artgallery.artgallery.proyecto.infrastructure;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +15,6 @@ import com.artgallery.artgallery.proyecto.domain.ProyectoDTO;
 import com.artgallery.artgallery.proyecto.domain.UsuarioProyectoDTO;
 import com.artgallery.artgallery.usuario.domain.User;
 import com.artgallery.artgallery.usuario.infraestructure.UsuarioImplement;
-import com.artgallery.artgallery.utils.FieldValidation;
-
-import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
