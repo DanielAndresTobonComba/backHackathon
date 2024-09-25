@@ -43,7 +43,7 @@ public class AuthService {
     
     public AuthResponse registro(RegisterRequest request) {
         // Validar datos
-        if (request.getUsername() == null || request.getPassword() == null) {
+        if (request.getUsername() == null || request.getPassword() == null || request.getRol() == null) {
             throw new IllegalArgumentException("Username and password are required.");
         }
 
