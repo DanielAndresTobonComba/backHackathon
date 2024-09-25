@@ -1,9 +1,9 @@
 -- Roles por defecto
-INSERT INTO rol ( nombre) VALUES ( 'Administrador');
+/* INSERT INTO rol ( nombre) VALUES ( 'Administrador');
 INSERT INTO rol ( nombre) VALUES ( 'Desarrollador');
 INSERT INTO rol ( nombre) VALUES ( 'Tech Lead');
 INSERT INTO rol ( nombre) VALUES ( 'QA');
-INSERT INTO rol ( nombre) VALUES ( 'Project Manager');
+INSERT INTO rol ( nombre) VALUES ( 'Project Manager'); */
 /* 
 -- Users por defecto
 INSERT INTO user (id, nombre, cedula, correo, foto_perfil, password, username, id_rol) VALUES (6, 'Christian Celis', '1234567890', 'christian.celis@example.com', 'foto1.jpg', '$2a$12$5tAA5yFIOV6Q3HoS9B2udeVyzr.Dp2IUn9BZ086PLW2HCxT9BbMPi', 'ccelis', 3);
