@@ -74,6 +74,9 @@ public class ActividadController {
      @GetMapping("")
     public ResponseEntity<?> mostrarActividades() {
         List<Actividad> listaActividad = actividadServiceImp.mostrarActividades();
+        if(listaActividad==null){
+            ResponseEntity.badRequest().build();
+        }
         return ResponseEntity.ok().body(listaActividad);
     }
 
