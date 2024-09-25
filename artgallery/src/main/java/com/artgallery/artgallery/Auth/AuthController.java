@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
-//@CrossOrigin("*")
+//@CrossOrigin("*") habilitar esto daña todo
+@CrossOrigin(origins = "https://satisfied-rejoicing-production.up.railway.app", allowCredentials = "true")
 @RestController 
 @RequestMapping("/auth")
 @RequiredArgsConstructor
