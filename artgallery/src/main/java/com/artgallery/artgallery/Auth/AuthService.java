@@ -26,7 +26,7 @@ public class AuthService {
         // generaremos el token
         User user = userRepository.findByUsername(resquest.getUsername());
         if (user == null) {
-            return  new AuthResponse("El usuario no existe" , "No disponible" , "No disponible" , "No disponible");
+            return  new AuthResponse("El usuario no existe" , "No disponible" , "No disponible" , "No disponible" , "No diponible");
         }
 
         String token = JwtService.getToken(user);
@@ -36,6 +36,7 @@ public class AuthService {
             .rol(user.getRol().getNombre())
             .nombre(user.getNombre())
             .foto(user.getFotoPerfil())
+            .cedula(user.getCedula())
             .build();
     }
 
@@ -65,6 +66,7 @@ public class AuthService {
 
         // Retornar un objeto de la clase AuthResponse con el token
         return AuthResponse.builder()
+            .cedula(user.getCedula())
             .token(JwtService.getToken(user))
             .rol(request.getRol().getNombre())
             .nombre(user.getNombre())
@@ -72,7 +74,7 @@ public class AuthService {
             .build();
             }
 
-        return new AuthResponse("No tiene permisos" , "No tiene permisos" , "No disponible" , "No disponible");
+        return new AuthResponse("No tiene permisos" , "No tiene permisos" , "No disponible" , "No disponible" , "No diponible");
     }
 
 }
