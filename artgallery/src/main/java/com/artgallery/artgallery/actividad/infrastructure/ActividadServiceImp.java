@@ -68,7 +68,7 @@ public class ActividadServiceImp implements IActividad{
 
         Optional<User> usuario = usuarioRepository.findById(userId);
         if(usuario.isPresent()){
-            return actividadRepository.findByDesarrollador_Id(userId);
+            return actividadRepository.findByUsuarioId(userId);
         }
 
         return null;

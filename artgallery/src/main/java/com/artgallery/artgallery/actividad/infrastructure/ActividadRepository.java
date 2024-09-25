@@ -10,7 +10,7 @@ import com.artgallery.artgallery.actividad.domain.Actividad;
 @Repository
 public interface ActividadRepository extends JpaRepository<Actividad,Long>{
 
-    List<Actividad> findByDesarrollador_Id(Long userId);
+    List<Actividad> findByUsuarioId(Long usuarioId);
     // @Query("SELECT a FROM Actividad a WHERE a.desarrollador.id = :userId")
     // List<Actividad> findActividadesByUserId(@Param("userId") Long userId);
 }

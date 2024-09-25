@@ -73,7 +73,7 @@ public class ProyectoServiceImp implements IProyecto{
 
     @Override
     public List<Proyecto> mostrarProyectoPorUserId(Long id) {
-        return proyectoRepository.findByDesarrollador_Id(id); 
+        return proyectoRepository.findBytechLeadId(id); 
     }
 
   
