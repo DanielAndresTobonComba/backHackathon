@@ -3,13 +3,18 @@ package com.artgallery.artgallery.usuario.infraestructure;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.artgallery.artgallery.actividad.domain.Actividad;
+import com.artgallery.artgallery.actividad.infrastructure.ActividadServiceImp;
 import com.artgallery.artgallery.rol.domain.Rol;
 import com.artgallery.artgallery.rol.infraestructure.RolImplement;
 import com.artgallery.artgallery.usuario.domain.User;
 import com.artgallery.artgallery.usuario.domain.UsuarioDTO;
 import com.artgallery.artgallery.utils.FieldValidation;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +37,9 @@ public class UsuarioController {
     @Autowired
     private RolImplement rolImp;
 
+    @Autowired
+    private ActividadServiceImp actividadServiceImp;
+
     @PostMapping("")
     public ResponseEntity<?> crearUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO, BindingResult result) {
 
@@ -53,12 +61,12 @@ public class UsuarioController {
          
     }
 
-    @GetMapping("/{cedula}")
+    @GetMapping("/cedula/{cedula}")
     public ResponseEntity<?> obtenerUsuarioPorCedula(@PathVariable String cedula) {
         return ResponseEntity.ok().body(usuarioImplement.buscarUsuarioPorCedula(cedula));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<?> obtenerUsuarioPorId(@PathVariable  Long id) {
         if(usuarioImplement.buscarUsuarioPorId(id)!=null){
             return ResponseEntity.ok().body(usuarioImplement.buscarUsuarioPorId(id));
@@ -73,10 +81,15 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuarioImplement.mostrarUsuarios());
     }
 
+    @Transactional
     @DeleteMapping("/{cedula}")  
     public ResponseEntity<?>  eliminarUsuario(@PathVariable String cedula){
         User usuario =  usuarioImplement.buscarUsuarioPorCedula(cedula);
         if(usuario != null){
+            List<Actividad> actividades = actividadServiceImp.mostrarActividaesPorIdUser(usuario.getId());
+            for (Actividad actividad : actividades) {
+                actividad.setUsuario(null);         
+            }
             usuarioImplement.eliminar(cedula);
              return ResponseEntity.ok().body(usuario);
         }
