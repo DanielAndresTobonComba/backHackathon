@@ -64,7 +64,7 @@ public class User implements UserDetails {
 
     private String fotoPerfil;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_rol")
     private Rol rol;
 
