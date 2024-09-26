@@ -20,6 +20,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/rol")
+
 public class RolController {
 
     @Autowired

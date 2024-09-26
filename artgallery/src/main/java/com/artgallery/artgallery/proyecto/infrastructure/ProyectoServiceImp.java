@@ -60,11 +60,18 @@ public class ProyectoServiceImp implements IProyecto{
     public User asignarUsuarioaProyecto(String cedula, Long idProyecto) {
         Optional <Proyecto> proyecto = proyectoRepository.findById(idProyecto);
         Optional <User> usuario = usuarioRepository.findByCedula(cedula);
+
+        System.out.println(proyecto);
+        System.out.println(usuario);
+        System.out.println("LLEGUE A REVIZAR SI EXISTEN");
+
         if(proyecto.isPresent() &&  usuario.isPresent()){
+            
             Proyecto proyecto2 = proyecto.get();
             proyecto2.getUsuarios().add(usuario.get());
             usuario.get().getProyectos().add(proyecto.get());
             usuarioRepository.save(usuario.get());
+            System.out.println("LLEGUE A REVIZAR SI SE AGREGAEGO Y RRETORNO");
             return  usuario.get();
         }
         return  null;
