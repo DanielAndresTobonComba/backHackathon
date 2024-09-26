@@ -28,7 +28,7 @@ public class ProyectoController {
     @Autowired
     private UsuarioImplement usuarioImplement;
 
-    @PostMapping("")
+    @PostMapping("/crear")
     public ResponseEntity<?> crearProyecto(@RequestBody ProyectoDTO proyectoDTO) {
         Proyecto proyecto = new Proyecto();
         proyecto.setNombre(proyectoDTO.getNombre());
