@@ -76,7 +76,7 @@ public class UsuarioController {
         
     }
 
-    @GetMapping("")
+    @GetMapping("/usuarios")
     public ResponseEntity<?> mostrarUsuarios() {
         return ResponseEntity.ok().body(usuarioImplement.mostrarUsuarios());
     }
