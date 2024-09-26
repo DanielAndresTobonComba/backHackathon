@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.artgallery.artgallery.proyecto.domain.Proyecto;
 import com.artgallery.artgallery.rol.domain.Rol;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -74,6 +76,8 @@ public class User implements UserDetails {
         joinColumns = @JoinColumn(name = "usuario_id"),
         inverseJoinColumns = @JoinColumn(name = "proyecto_id")
     )
+    
+    @JsonIgnore
     @Builder.Default
     private Set<Proyecto> proyectos = new HashSet<>();
 
