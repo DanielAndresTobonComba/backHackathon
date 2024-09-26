@@ -73,4 +73,10 @@ public class ProyectoController {
         return  ResponseEntity.ok().body(proyectoServiceImp.asignarUsuarioaProyecto(usuarioProyectoDTO.getCedulaUsuario(), usuarioProyectoDTO.getIdProyecto()));
     }
 
+
+    @GetMapping("/traerProyectoSegunEstato/{id}")
+    public ResponseEntity<?> obtenerProjectoPorEstado(@PathVariable Long id) {
+        return ResponseEntity.ok().body(proyectoServiceImp.mostratProyectoSegunId(id));
+    }
+
 }
