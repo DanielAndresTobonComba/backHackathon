@@ -1,7 +1,10 @@
 package com.artgallery.artgallery.proyecto.infrastructure;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.artgallery.artgallery.estado.domain.Estado;
+import com.artgallery.artgallery.estado.infrastructure.EstadoServiceImp;
 import com.artgallery.artgallery.proyecto.domain.Proyecto;
 import com.artgallery.artgallery.proyecto.domain.ProyectoDTO;
 import com.artgallery.artgallery.proyecto.domain.UsuarioProyectoDTO;
@@ -20,6 +25,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController()
 @RequestMapping("/api/proyecto")
+@CrossOrigin(origins = "https://satisfied-rejoicing-production.up.railway.app", allowCredentials = "true")
 public class ProyectoController {
 
     @Autowired
@@ -27,6 +33,9 @@ public class ProyectoController {
 
     @Autowired
     private UsuarioImplement usuarioImplement;
+
+    @Autowired
+    private EstadoServiceImp estadoServiceImp;
 
     @PostMapping("/crear")
     public ResponseEntity<?> crearProyecto(@RequestBody ProyectoDTO proyectoDTO) {
@@ -45,6 +54,14 @@ public class ProyectoController {
         }
         proyecto.setTechLead(user);
         // Falta estado
+
+        Optional <Estado> estado = estadoServiceImp.buscarEstadoPorId(proyectoDTO.getIdEstado());
+        if(estado == null){
+            ResponseEntity.badRequest().build();
+        } else if (estado.isPresent()) {
+            proyecto.setEstado(estado.get());
+        }
+        
         return ResponseEntity.ok().body(proyectoServiceImp.crearProyecto(proyecto));
     }
 
