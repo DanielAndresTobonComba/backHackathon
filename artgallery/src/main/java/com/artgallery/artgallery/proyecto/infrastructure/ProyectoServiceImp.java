@@ -76,5 +76,11 @@ public class ProyectoServiceImp implements IProyecto{
         return proyectoRepository.findByUsuariosId(id); 
     }
 
+
+    @Override
+    public List<Proyecto> mostratProyectoSegunId(Long id) {
+        return proyectoRepository.findByEstadoId(id);
+    }
+
   
 }
